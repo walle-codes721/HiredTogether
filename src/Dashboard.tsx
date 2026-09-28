@@ -108,8 +108,8 @@ export default function Dashboard({ user }: { user: User }) {
         </section>
       )}
 
-      <section className="py-8 flex flex-col gap-6">
-        <div className="flex items-center gap-1 p-1 bg-white/[0.03] rounded-full border border-white/[0.05] text-[11px] w-fit">
+      <section className="py-8 flex flex-col gap-6 min-w-0">
+        <div className="flex items-center gap-1 p-1 bg-white/[0.03] rounded-full border border-white/[0.05] text-[11px] w-full sm:w-fit overflow-x-auto">
           <FilterTab active={filter === "all"} onClick={() => setFilter("all")} label={`All (${total})`} />
           {STATUS_ORDER.map((s) => (
             <FilterTab key={s} active={filter === s} onClick={() => setFilter(s)} label={`${STATUS_META[s].label} (${counts[s]})`} />
@@ -142,12 +142,12 @@ export default function Dashboard({ user }: { user: User }) {
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-3 shrink-0">
-                  <span className={`px-2.5 py-1 rounded-full border text-[11px] font-semibold tracking-wide ${STATUS_META[a.status].badge}`}>
+                <div className="flex items-center gap-1.5 sm:gap-3 shrink-0 pl-2">
+                  <span className={`px-2 sm:px-2.5 py-1 rounded-full border text-[10px] sm:text-[11px] font-semibold tracking-wide whitespace-nowrap ${STATUS_META[a.status].badge}`}>
                     {STATUS_META[a.status].label}
                   </span>
                   <button
-                    className="text-white/30 hover:text-white text-xs transition-colors"
+                    className="text-white/30 hover:text-white text-xs transition-colors px-1"
                     onClick={() => {
                       setEditing(a);
                       setShowModal(true);
@@ -155,7 +155,7 @@ export default function Dashboard({ user }: { user: User }) {
                   >
                     Edit
                   </button>
-                  <button className="text-white/30 hover:text-rose-400 text-xs transition-colors" onClick={() => handleDelete(a.id)}>
+                  <button className="text-white/30 hover:text-rose-400 text-xs transition-colors px-1" onClick={() => handleDelete(a.id)}>
                     Delete
                   </button>
                 </div>
@@ -192,7 +192,7 @@ function StatCard({ label, value, color, hint }: { label: string; value: number;
           <span className={`h-2 w-2 rounded-full ${colors.dot}`} />
           <span className={`text-xs font-medium uppercase tracking-wider ${colors.text}`}>{label}</span>
         </div>
-        <div className="text-5xl font-semibold tracking-tight text-white my-1">{String(value).padStart(2, "0")}</div>
+        <div className="text-4xl sm:text-5xl font-semibold tracking-tight text-white my-1">{String(value).padStart(2, "0")}</div>
       </div>
       <div className="mt-3 pt-3 border-t border-white/[0.04] text-xs text-white/45">{hint}</div>
     </div>
@@ -244,8 +244,11 @@ function ApplicationModal({
   }
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-6" onClick={onClose}>
-      <div className="w-full max-w-md p-7 rounded-2xl bg-[#0f0f13] border border-white/[0.08]" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 sm:p-6" onClick={onClose}>
+      <div
+        className="w-full max-w-md p-5 sm:p-7 rounded-2xl bg-[#0f0f13] border border-white/[0.08] max-h-[85vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
         <h2 className="text-lg font-semibold text-white mb-5">{initial ? "Edit Application" : "New Application"}</h2>
         <form onSubmit={submit} className="flex flex-col gap-3">
           <input
