@@ -6,3 +6,10 @@ compatibility_date = "2025-01-01"
 binding = "DB"
 database_name = "hired-together-db"
 database_id = "36545652-3dcd-4b67-9114-4d7d5b3d1836"
+
+[vars]
+GOOGLE_REDIRECT_URI = "https://hired-together.pages.dev/api/gmail/callback"
+
+# Secrets (not committed — set with `npx wrangler pages secret put <NAME> --project-name=hired-together`):
+#   GOOGLE_CLIENT_ID
+#   GOOGLE_CLIENT_SECRET

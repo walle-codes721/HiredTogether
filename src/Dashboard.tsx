@@ -8,6 +8,7 @@ import {
   type Status,
   type User,
 } from "./api";
+import GmailConnect from "./GmailConnect";
 
 const STATUS_META: Record<Status, { label: string; dot: string; badge: string }> = {
   applied: { label: "Applied", dot: "bg-white/40", badge: "bg-white/[0.08] text-white/70 border-white/10" },
@@ -79,7 +80,11 @@ export default function Dashboard({ user }: { user: User }) {
         </button>
       </div>
 
-      <section className="py-10 border-b border-white/[0.04]">
+      <div className="pt-8">
+        <GmailConnect />
+      </div>
+
+      <section className="py-2 pb-10 border-b border-white/[0.04]">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StatCard label="Offers Received" value={counts.offer} color="emerald" hint={`${counts.interview} in interviews`} />
           <StatCard label="In Progress" value={counts.applied + counts.interview} color="amber" hint={`${counts.interview} interviewing`} />

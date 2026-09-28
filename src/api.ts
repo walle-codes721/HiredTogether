@@ -76,3 +76,13 @@ export const createSquad = (name: string) =>
 
 export const joinSquad = (invite_code: string) =>
   api<{ squad: Squad }>("/squad/join", { method: "POST", body: JSON.stringify({ invite_code }) });
+
+export interface GmailConnection {
+  email: string;
+  connected_at: string;
+  last_synced_at: string | null;
+}
+
+export const getGmailStatus = () => api<{ connected: boolean; connection: GmailConnection | null }>("/gmail/status");
+
+export const disconnectGmail = () => api<{ ok: true }>("/gmail/disconnect", { method: "POST" });

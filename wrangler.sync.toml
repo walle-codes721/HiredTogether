@@ -1,0 +1,15 @@
+name = "hired-together-gmail-sync"
+main = "worker/sync.ts"
+compatibility_date = "2025-01-01"
+
+[triggers]
+crons = ["*/15 * * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hired-together-db"
+database_id = "36545652-3dcd-4b67-9114-4d7d5b3d1836"
+
+# Secrets (not committed — set with `npx wrangler secret put <NAME> --config wrangler.sync.toml`):
+#   GOOGLE_CLIENT_ID
+#   GOOGLE_CLIENT_SECRET
