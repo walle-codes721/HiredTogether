@@ -1,0 +1,8 @@
+name = "hired-together"
+pages_build_output_dir = "dist"
+compatibility_date = "2025-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hired-together-db"
+database_id = "36545652-3dcd-4b67-9114-4d7d5b3d1836"
